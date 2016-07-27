@@ -8,9 +8,7 @@ Landmarks:
 /*
 0=neutral, 1=anger, 2=contempt, 3=disgust, 4=fear, 5=happy, 6=sadness, 7=surprise
 */
-/*
-116 ,121, 134 - classify neutral and peak
-*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "opencv/highgui.h"
@@ -25,7 +23,7 @@ using namespace std;
 Mat populateLandmarkTest(Mat landmarktestMat, ofstream& landmarkinfo, float landmarks[]);
 int main()
 {
-	static const char* path = "C:/Users/Shakti/Downloads/stasm4.1.0/data/myface.jpg";
+	static const char* path = "C:/Users/Downloads/stasm4.1.0/data/myface.jpg";
 
 	VideoCapture cap;
 	//cap.open("C:/Users/Shakti/Downloads/emotions.avi");
@@ -38,10 +36,10 @@ int main()
 	Mat imgcap;
 	cap >> imgcap;
 	
-	imwrite("C:/Users/Shakti/Downloads/stasm4.1.0/data/myface.jpg", imgcap);
+	imwrite("C:/Users/Downloads/stasm4.1.0/data/myface.jpg", imgcap);
 	//Declare csv file to store landmark info
 	ofstream landmarkinfo;
-	landmarkinfo.open("C:\\Users\\Shakti\\Downloads\\CK+Dataset\\emotionCateg\\landmarkinfo.csv");
+	landmarkinfo.open("C:\\Users\\Downloads\\CK+Dataset\\emotionCateg\\landmarkinfo.csv");
 
 	
 	
@@ -59,7 +57,7 @@ int main()
 		int foundface;
 		float landmarks[2 * stasm_NLANDMARKS]; // x,y coords
 		if (!stasm_search_single(&foundface, landmarks,
-			(char*)img.data, img.cols, img.rows, path, "C:/Users/Shakti/Downloads/stasm4.1.0/data"))
+			(char*)img.data, img.cols, img.rows, path, "C:/Users/Downloads/stasm4.1.0/data"))
 		{
 			printf("Error in stasm_search_single: %s\n", stasm_lasterr());
 			exit(1);
