@@ -53,3 +53,12 @@ Anger: 63.48%
 Surprise: 94%
 
 The application works on both stored data as well as live stream video.
+
+#Output
+Detection of neutral expression:
+
+![neutral face detection](/neutralDetect.png?raw=true "Detection of neutral expression")
+
+Detection of happy expression:
+
+![happy face detection](/happyDetect.png?raw=true "Detection of happy expression")
