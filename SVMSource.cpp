@@ -23,8 +23,7 @@ int main()
 
 	//Create 900 x (68 x 2) matrix of training data
 	CvMLData cvml;
-	//cvml.read_csv("C:\\Users\\Shakti\\Downloads\\CK+Dataset\\mytrainSelFeaturesHappy.csv");
-	//cvml.read_csv("C:\\Users\\Shakti\\Downloads\\trainlandmarks2.csv");
+	
 	cvml.read_csv("C:\\Users\\Shakti\\Downloads\\EmotionTrainData\\newSel_anger_ratios_flipped.csv");
 
 	// Indicate the column that has the response
@@ -87,11 +86,7 @@ int main()
 	else
 		cout << "Train complete";
 	//save model to file
-	//opencv_svm.save("C:\\Users\\Shakti\\Downloads\\CK+Dataset\\neutralData\\svmNeutral.xml");
-	//opencv_svm.save("C:\\Users\\Shakti\\Downloads\\CK+Dataset\\neutralData\\svmEmotion.xml");
-	
-	
-	opencv_svm.save("C:\\Users\\Shakti\\Downloads\\CK+Dataset\\neutralData\\svm_anger_ratios_flipped.xml");
+	opencv_svm.save("C:\\Users\\Downloads\\CK+Dataset\\neutralData\\svm_anger_ratios_flipped.xml");
 
 	//Testing
 	int k = 0;
@@ -103,73 +98,5 @@ int main()
 		cout << "Test Response: " << response << " Expected" << testresponse.at<int>(i)<<  "\n";
 	}
 	cout << "accuracy by the opencv svm is ..." << 100.0 * (float)k / testdata.rows << endl;
-
-	//////////////////////////////////////////
-	/*
-	//Perform predictions
-	CvMLData landmarksreadinfo;
-	landmarksreadinfo.read_csv("C:\\Users\\Shakti\\Downloads\\CK+Dataset\\emotionCateg\\landmarkinfo.csv");
-	const CvMat* landmarkValues = landmarksreadinfo.get_values();
-	Mat myLandmarkValues(landmarkValues);
-	Mat LandmarkTestData(myLandmarkValues.rows, numfeatures, CV_32F);
-
-
-	for (int j = 0; j < LandmarkTestData.rows; j++)
-	{
-	Mat tmpLandmarkTestData(LandmarkTestData, Range(j, j + 1));
-	float predictions = opencv_svm.predict(tmpLandmarkTestData);
-	cout << "Prediction: " << predictions << "\n";
-	}
-	*/
-	/*
-
-	// Set up SVM's parameters
-	CvSVMParams params;
-	params.svm_type = CvSVM::C_SVC;
-	params.kernel_type = CvSVM::LINEAR;
-	params.term_crit = cvTermCriteria(CV_TERMCRIT_ITER, 100, 1e-6);
-
-	// Train the SVM
-	CvSVM SVM;
-	SVM.train(trainingDataMat, labelsMat, Mat(), Mat(), params);
-
-	Vec3b green(0, 255, 0), blue(255, 0, 0);
-	// Show the decision regions given by the SVM
-	for (int i = 0; i < image.rows; ++i)
-	for (int j = 0; j < image.cols; ++j)
-	{
-	Mat sampleMat = (Mat_<float>(1, 2) << j, i);
-	float response = SVM.predict(sampleMat);
-
-	if (response == 1)
-	image.at<Vec3b>(i, j) = green;
-	else if (response == -1)
-	image.at<Vec3b>(i, j) = blue;
-	}
-
-	// Show the training data
-	int thickness = -1;
-	int lineType = 8;
-	circle(image, Point(501, 10), 5, Scalar(0, 0, 0), thickness, lineType);
-	circle(image, Point(255, 10), 5, Scalar(255, 255, 255), thickness, lineType);
-	circle(image, Point(501, 255), 5, Scalar(255, 255, 255), thickness, lineType);
-	circle(image, Point(10, 501), 5, Scalar(255, 255, 255), thickness, lineType);
-
-	// Show support vectors
-	thickness = 2;
-	lineType = 8;
-	int c = SVM.get_support_vector_count();
-
-	for (int i = 0; i < c; ++i)
-	{
-	const float* v = SVM.get_support_vector(i);
-	circle(image, Point((int)v[0], (int)v[1]), 6, Scalar(128, 128, 128), thickness, lineType);
-	}
-
-	imwrite("result.png", image);        // save the image
-
-	imshow("SVM Simple Example", image); // show it to the user
-	waitKey(0);
-	*/
 
 }
